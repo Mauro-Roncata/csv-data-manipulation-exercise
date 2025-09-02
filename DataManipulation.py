@@ -49,4 +49,18 @@ with open('mais_vendidos.csv', 'w', newline='', encoding='utf-8') as f:
             writer.writerow([categoria, produto, f'{total:.2f}'])
 
 
+# Mês com maior faturamento
+
+faturamento_mensal = defaultdict(float)
+for item in dados:
+    dt = datetime.strptime(item["data"], '%d/%m/%Y')
+    mes_ano = dt.strftime('%m/%Y')
+    faturamento_mensal[mes_ano] += item["total"]
+
+mes_campeao = max(faturamento_mensal.items(), key=lambda x: x[1])
+
+with open('mes_campeao.csv', 'w', newline='', encoding='utf-8') as f:
+    f.write(f'Mês campeão: {mes_campeao[0]} - Faturamento: R$ {mes_campeao[1]:.2f}\n')
+
+
 
