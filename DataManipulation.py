@@ -35,6 +35,10 @@ with open('resumo_categoria.csv', 'w', newline='', encoding='utf-8') as f:
     for categoria, total in resumo_categoria.items():
         writer.writerow([categoria, f'{total:.2f}'])
 
+print("Categoria,TotalVendido")
+for categoria, total in resumo_categoria.items():
+    print(f"{categoria},{total:.2f}")
+
 
 # Cinco produtos mais vendidos por categoria
 vendas_produto_cat = defaultdict(lambda: defaultdict(float))
@@ -48,6 +52,12 @@ with open('mais_vendidos.csv', 'w', newline='', encoding='utf-8') as f:
         top5 = sorted(produtos.items(), key=lambda x: x[1], reverse=True)[:5]
         for produto, total in top5:
             writer.writerow([categoria, produto, f'{total:.2f}'])
+
+print("\nCategoria,Produto,TotalVendas")
+for categoria, produtos in vendas_produto_cat.items():
+    top5 = sorted(produtos.items(), key=lambda x: x[1], reverse=True)[:5]
+    for produto, total in top5:
+        print(f"{categoria},{produto},{total:.2f}")
 
 
 # Mês com maior faturamento
@@ -63,5 +73,6 @@ mes_campeao = max(faturamento_mensal.items(), key=lambda x: x[1])
 with open('mes_campeao.csv', 'w', newline='', encoding='utf-8') as f:
     f.write(f'Mês campeão: {mes_campeao[0]} - Faturamento: R$ {mes_campeao[1]:.2f}\n')
 
-
+print("\nmes_campeao.txt")
+print(f"{mes_campeao[0]},{mes_campeao[1]:.2f}")
 
