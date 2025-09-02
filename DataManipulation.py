@@ -35,6 +35,7 @@ with open('resumo_categoria.csv', 'w', newline='', encoding='utf-8') as f:
     for categoria, total in resumo_categoria.items():
         writer.writerow([categoria, f'{total:.2f}'])
 
+
 # Cinco produtos mais vendidos por categoria
 vendas_produto_cat = defaultdict(lambda: defaultdict(float))
 for item in dados:
@@ -53,7 +54,7 @@ with open('mais_vendidos.csv', 'w', newline='', encoding='utf-8') as f:
 
 faturamento_mensal = defaultdict(float)
 for item in dados:
-    dt = datetime.strptime(item["data"], '%d/%m/%Y')
+    dt = datetime.strptime(item["data"], '%Y-%m-%d')
     mes_ano = dt.strftime('%m/%Y')
     faturamento_mensal[mes_ano] += item["total"]
 
