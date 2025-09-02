@@ -35,6 +35,6 @@ with open('resumo_categoria.csv', 'w', newline='', encoding='utf-8') as f:
     for categoria, total in resumo_categoria.items():
         writer.writerow([categoria, f'{total:.2f}'])
 
-print(resumo_categoria)
+
 
 
